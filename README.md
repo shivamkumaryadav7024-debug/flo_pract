@@ -166,65 +166,6 @@ Each task includes a title, description, priority level, and status.
 3. **Empty Column**: Drag all tasks from "To Do" - See the empty state message
 4. **Multiple Moves**: Quickly drag multiple tasks - Watch smooth state management
 
-##  Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push to GitHub:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: Kanban board"
-   git remote add origin https://github.com/YOUR_USERNAME/flo-kanban.git
-   git push -u origin main
-   ```
-
-2. Deploy to Vercel:
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Select your GitHub repository
-   - Deploy! (Vercel auto-detects Vite projects)
-
-### Deploy to Netlify
-
-1. Build locally:
-   ```bash
-   npm run build
-   ```
-
-2. Deploy the `dist/` folder:
-   - Go to [netlify.com](https://netlify.com)
-   - Drag & drop the `dist` folder
-   - Or connect GitHub for automatic deployments
-
-##  Code Examples
-
-### Making an Optimistic Update
-
-```javascript
-// 1. Store previous state
-previousStateRef.current = tasks;
-
-// 2. Update UI immediately (optimistic)
-const updatedTasks = tasks.map((task) =>
-  task.id === activeTaskId
-    ? { ...task, status: newStatus }
-    : task
-);
-setTasks(updatedTasks);
-
-// 3. Call API and handle error
-try {
-  await updateTaskStatus(activeTaskId, newStatus);
-  // Success - keep the update
-  toast.success('Updated!');
-} catch (error) {
-  // Rollback on failure
-  setTasks(previousStateRef.current);
-  toast.error('Failed to update');
-}
-```
-
 
 ### Tailwind Styles Not Loading
 ```bash
